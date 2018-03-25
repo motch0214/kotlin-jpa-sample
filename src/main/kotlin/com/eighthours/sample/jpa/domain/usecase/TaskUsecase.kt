@@ -1,13 +1,17 @@
 package com.eighthours.sample.jpa.domain.usecase
 
 import com.eighthours.sample.jpa.domain.UsecaseException
+import com.eighthours.sample.jpa.domain.dao.TaskDao
+import com.eighthours.sample.jpa.domain.dao.TaskDto
 import com.eighthours.sample.jpa.domain.entity.Task
 import com.eighthours.sample.jpa.domain.repository.TaskRepository
 import com.eighthours.sample.jpa.domain.repository.UserRepository
 import javax.inject.Inject
+import javax.inject.Named
 import javax.transaction.Transactional
 
 
+@Named
 @Transactional
 class TaskUsecase {
 
@@ -16,6 +20,9 @@ class TaskUsecase {
 
     @Inject
     private lateinit var userRepository: UserRepository
+
+    @Inject
+    private lateinit var taskDao: TaskDao
 
     @Throws
     fun createTask(name: String, userName: String): Task {
@@ -27,5 +34,9 @@ class TaskUsecase {
     fun doneTask(taskId: Long) {
         val task = taskRepository.findById(taskId) ?: throw IllegalArgumentException("Task not found. id=$taskId")
         task.done()
+    }
+
+    fun listUpTask(): List<TaskDto> {
+        return taskDao.findAll()
     }
 }
