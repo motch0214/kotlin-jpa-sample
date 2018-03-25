@@ -1,12 +1,6 @@
-buildscript {
-    ext.kotlin_version = '1.2.30'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.2.31"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.2.31"
 }
 
 group 'com.eighthours'
@@ -22,8 +16,28 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.2.31'
+
+    // APIs
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    // Spring
+    compile 'org.springframework.data:spring-data-jpa:2.0.5.RELEASE'
+
+    // Hibernate
+    runtime group: 'org.hibernate', name: 'hibernate-core', version: '5.2.15.Final'
+    runtime group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.8.Final'
+
+    // Database
+    testRuntime group: 'com.h2database', name: 'h2', version: '1.4.197'
+
+    // Unit Testing
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.9.1'
 }
 
 compileKotlin {
@@ -31,4 +45,8 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+allOpen {
+    annotation("org.springframework.context.annotation.Configuration")
 }
