@@ -10,12 +10,15 @@
         <class>com.eighthours.sample.jpa.domain.entity.User</class>
         <class>com.eighthours.sample.jpa.domain.entity.Task</class>
 
+        <class>com.eighthours.sample.jpa.domain.dao.TaskDto</class>
+
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:h2:./db/sample-test"/>
             <property name="hibernate.connection.provider_class"
                       value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
 
     </persistence-unit>
