@@ -15,11 +15,9 @@ import javax.persistence.Persistence
 @EnableTransactionManagement
 class PersistenceConfig {
 
-    val persistenceUnitName = "sample"
-
     @Bean
-    fun entityManagerFactory(): EntityManagerFactory {
-        return Persistence.createEntityManagerFactory(persistenceUnitName)
+    fun entityManagerFactory(appProps: AppProperties): EntityManagerFactory {
+        return Persistence.createEntityManagerFactory(appProps.persistenceUnitName)
     }
 
     @Bean
