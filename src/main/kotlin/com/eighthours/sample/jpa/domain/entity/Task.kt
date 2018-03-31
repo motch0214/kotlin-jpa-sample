@@ -10,8 +10,7 @@ class Task() {
 
     @Id
     @GeneratedValue
-    var id: Long? = null
-        private set
+    val id: Long? = null
 
     lateinit var name: String
         private set

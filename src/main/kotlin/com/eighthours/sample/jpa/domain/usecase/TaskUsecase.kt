@@ -21,9 +21,6 @@ class TaskUsecase {
     @Inject
     private lateinit var userRepository: UserRepository
 
-    @Inject
-    private lateinit var taskDao: TaskDao
-
     @Throws
     fun createTask(name: String, userName: String): Task {
         val user = userRepository.findByName(userName) ?: throw UsecaseException("User ($userName) not found.")
@@ -34,9 +31,5 @@ class TaskUsecase {
     fun doneTask(taskId: Long) {
         val task = taskRepository.findById(taskId) ?: throw IllegalArgumentException("Task not found. id=$taskId")
         task.done()
-    }
-
-    fun listUpTask(): List<TaskDto> {
-        return taskDao.findAll()
     }
 }

@@ -10,7 +10,7 @@ class User() {
 
     @Id
     @GeneratedValue
-    var id: Long? = null
+    val id: Long? = null
 
     lateinit var name: String
         private set

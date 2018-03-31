@@ -1,6 +1,7 @@
 package com.eighthours.sample.jpa.domain
 
 import com.eighthours.sample.jpa.app.config.AppConfig
+import com.eighthours.sample.jpa.domain.dao.TaskDao
 import com.eighthours.sample.jpa.domain.usecase.TaskUsecase
 import com.eighthours.sample.jpa.domain.usecase.UserUsecase
 import org.assertj.core.api.Assertions.assertThat
@@ -27,6 +28,9 @@ class TaskUsecaseTest {
     @Inject
     private lateinit var taskUsecase: TaskUsecase
 
+    @Inject
+    private lateinit var taskDao: TaskDao
+
     @Test
     fun test() {
         val user = userUsecase.registerNewUser("User1", "user1@email.com")
@@ -36,7 +40,7 @@ class TaskUsecaseTest {
         log.info("task = $task")
         assertThat(task.name).isEqualTo("Task A")
 
-        val tasks = taskUsecase.listUpTask()
+        val tasks = taskDao.findAll()
         log.info("tasks = $tasks")
     }
 }

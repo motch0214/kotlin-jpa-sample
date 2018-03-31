@@ -10,8 +10,6 @@
         <class>com.eighthours.sample.jpa.domain.entity.User</class>
         <class>com.eighthours.sample.jpa.domain.entity.Task</class>
 
-        <class>com.eighthours.sample.jpa.domain.dao.TaskDto</class>
-
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:h2:./db/sample-test"/>

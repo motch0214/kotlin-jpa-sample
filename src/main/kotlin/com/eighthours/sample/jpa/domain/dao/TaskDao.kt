@@ -2,7 +2,8 @@ package com.eighthours.sample.jpa.domain.dao
 
 import javax.inject.Inject
 import javax.inject.Named
-import javax.persistence.*
+import javax.persistence.EntityManager
+import javax.persistence.Id
 
 
 @Named
@@ -12,28 +13,18 @@ class TaskDao {
     private lateinit var em: EntityManager
 
     fun findAll(): List<TaskDto> {
-        return em.createNamedQuery("TaskDto.findAll", TaskDto::class.java)
+        return em.createNamedQuery("TaskDao.findAll", TaskDto::class.java)
                 .resultList
     }
 }
 
 
-@Entity
-@NamedNativeQueries(
-        NamedNativeQuery(name = "TaskDto.findAll",
-                query = """
-                    select task.id as id, task.name as name, user.name as owner
-                    from TASK task
-                    join USER user on user.id = task.owner_id
-                """,
-                resultClass = TaskDto::class)
+data class TaskDto(
+
+        @Id
+        val id: Long,
+
+        val name: String,
+
+        val owner: String
 )
-class TaskDto {
-
-    @Id
-    var id: Long = 0
-
-    lateinit var name: String
-
-    lateinit var owner: String
-}
