@@ -5,7 +5,5 @@ import org.springframework.context.annotation.Configuration
 
 
 @Configuration
-@ComponentScan(
-        "com.eighthours.sample.jpa.domain.usecase",
-        "com.eighthours.sample.jpa.domain.dao")
+@ComponentScan("com.eighthours.sample.jpa.domain.usecase")
 class DomainConfig

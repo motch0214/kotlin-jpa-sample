@@ -1,6 +1,7 @@
 package com.eighthours.sample.jpa.app.config
 
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.orm.jpa.JpaTransactionManager
@@ -12,6 +13,7 @@ import javax.persistence.Persistence
 
 @Configuration
 @EnableJpaRepositories("com.eighthours.sample.jpa.app.repository")
+@ComponentScan("com.eighthours.sample.jpa.app.dao")
 @EnableTransactionManagement
 class PersistenceConfig {
 
